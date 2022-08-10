@@ -1,4 +1,4 @@
-package greetings
+package server
 
 import (
 	"errors"
@@ -11,20 +11,20 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-func Hello(name string) (string, error) {
+func Welcome(name string) (string, error) {
 
 	if name == "" {
-		return "", errors.New("Name is empty")
+		return "", errors.New("Name Empty")
 	}
 
 	message := fmt.Sprintf(randomFormat(), name)
 	return message, nil
 }
 
-func Hellos(names []string) (map[string]string, error) {
+func WelcomeMore(names []string) (map[string]string, error) {
 	messages := make(map[string]string)
 	for _, name := range names {
-		message, err := Hello(name)
+		message, err := Welcome(name)
 		if err != nil {
 			return nil, err
 		}
@@ -35,9 +35,9 @@ func Hellos(names []string) (map[string]string, error) {
 
 func randomFormat() string {
 	formats := []string{
-		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
-		"Hey there, %v. Well met!",
+		"Hi, %v, Welcome to GoLang!",
+		"Great to see you, %v, Enjoy Coding!",
+		"Hey there %v, Get ready to Go!",
 	}
 	return formats[rand.Intn(len(formats))]
 }
